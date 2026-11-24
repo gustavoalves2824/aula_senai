@@ -1,0 +1,110 @@
+/* unidade senai */
+INSERT INTO unidade_senai (nome_unidade, cidade) VALUES
+('SENAI Londrina', 'Londrina'),
+('SENAI Cascavel', 'Cascavel'),
+('SENAI Ponta Grossa', 'Ponta Grossa'),
+('SENAI Paranagua', 'Paranagua');
+
+/* LINHAS DE PRODUCAO */
+INSERT INTO linhas_producao (id_unidade, nome_linha) VALUES
+(1, 'Linha de Estamparia'),
+(1, 'Linha de Usinagem CNC'),
+(2, 'Linha de Corte a Laser'),
+(3, 'Linha de Fundicao'),
+(3, 'Linha de Soldagem MIG'),
+(4, 'Linha de Embalagem');
+
+/* Tipos de Maquina */
+INSERT INTO TIPOS_MAQUINA (nome_tipo, horas_revisao_padrao) VALUES
+('Centro de Usinagem', 550),
+('Robo de Solda', 900),
+('Prensa Excentrica', 450),
+('Cortadora Laser', 700),
+('Empacotadora Automatica', 750),
+('Ponte Rolante', 1200);
+
+/* maquinas senai */
+INSERT INTO MAQUINAS_SENAI
+(id_linha, id_tipo, tag_patrimonio, data_aquisicao, status_operacao) VALUES
+(1, 3, 'PAT-1001', '2020-03-09', 'Operando'),
+(1, 3, 'PAT-1002', '2022-07-21', 'Operando'),
+(2, 1, 'PAT-1003', '2021-11-04', 'Manutencao'),
+(3, 4, 'PAT-1004', '2023-02-16', 'Operando'),
+(4, 6, 'PAT-1005', '2018-09-27', 'Operando'),
+(5, 2, 'PAT-1006', '2019-05-13', 'Parada'),
+(6, 5, 'PAT-1007', '2024-01-30', 'Operando'),
+(6, 5, 'PAT-1008', '2024-06-11', 'Operando');
+
+/* TECNICOS */
+INSERT INTO tecnicos (nome_tecnico, especialidade, nivel_certificado) VALUES
+('Rafael Mendes', 'Mecanica', 'Intermediario'),
+('Juliana Prado', 'Eletronica', 'Avancado'),
+('Thiago Nascimento', 'Soldagem', 'Especialista'),
+('Beatriz Lima', 'Pneumatica', 'Intermediario'),
+('Gustavo Almeida', 'Automacao', 'Basico'),
+('Camila Rocha', 'Mecatronica', 'Avancado');
+
+/* ordens de servico */
+INSERT INTO ordens_servico
+(id_maquina, id_tecnico, data_abertura, tipo_manutencao, status_os) VALUES
+(1, 1, '2026-09-14 07:20:00', 'Preventiva', 'Concluida'),
+(3, 6, '2026-09-22 13:05:00', 'Corretiva', 'Concluida'),
+(3, 1, '2026-10-06 08:40:00', 'Corretiva', 'Em andamento'),
+(4, 2, '2026-10-09 15:50:00', 'Preditiva', 'Concluida'),
+(5, 5, '2026-10-19 10:15:00', 'Preventiva', 'Aberta'),
+(6, 3, '2026-10-27 09:30:00', 'Corretiva', 'Aberta'),
+(7, 4, '2026-11-03 14:10:00', 'Preventiva', 'Concluida'),
+(2, 1, '2026-11-10 11:25:00', 'Preditiva', 'Aberta'),
+(8, 4, '2026-11-16 08:55:00', 'Preventiva', 'Cancelada');
+
+/* ESTOQUE DE PECAS */
+INSERT INTO estoque_pecas
+(codigo_part_number, descricao, qtd_estoque, preco_unitario) VALUES
+('RLM-3001', 'Rolamento autocompensador', 32, 118.40),
+('CRR-3002', 'Correia sincronizadora', 24, 96.80),
+('MTR-3003', 'Motor trifasico 5cv', 6, 1245.00),
+('SNS-3004', 'Sensor indutivo', 40, 64.70),
+('VLV-3005', 'Valvula de controle pneumatica', 14, 287.30),
+('BCO-3006', 'Bico de solda MIG', 60, 23.90),
+('LNT-3007', 'Lente de protecao laser', 9, 415.00);
+
+/* Componentes das Maquinas */
+INSERT INTO componentes_maq
+(id_maquina, nome_componente, horas_uso_acumulado, limite_hora_alerta) VALUES
+(1, 'Embreagem da prensa', 410, 450),
+(2, 'Volante de inercia', 160, 450),
+(3, 'Eixo-arvore', 480, 550),
+(3, 'Fuso de esferas', 520, 550),
+(4, 'Lente de protecao', 655, 700),
+(5, 'Cabo de aco', 1090, 1200),
+(6, 'Alimentador de arame', 590, 900),
+(7, 'Cabecote de selagem', 720, 750),
+(8, 'Correia sincronizadora', 200, 750);
+
+/* historico sensores */
+INSERT INTO historico_sensores
+(id_ordem, temperatura_medida, vibracao_mm_s, data_hora_leitura) VALUES
+(1, 58.40, 2.20, '2026-09-14 08:00:00'),
+(1, 60.10, 2.40, '2026-09-14 09:00:00'),
+(2, 93.70, 8.10, '2026-09-22 13:40:00'),
+(3, 96.20, 8.90, '2026-10-06 09:15:00'),
+(3, 99.80, 9.40, '2026-10-06 11:00:00'),
+(4, 71.30, 3.00, '2026-10-09 16:20:00'),
+(5, 55.60, 1.80, '2026-10-19 10:50:00'),
+(6, 88.90, 6.70, '2026-10-27 10:00:00'),
+(7, 62.40, 2.50, '2026-11-03 14:45:00'),
+(8, 69.80, 3.40, '2026-11-10 12:00:00');
+
+/* Pecas OS */
+INSERT INTO pecas_os
+(id_ordem, id_pecas, qtd_estoque, preco_aplicado) VALUES
+(1, 1, 2, 118.40),
+(2, 3, 1, 1245.00),
+(2, 4, 2, 64.70),
+(3, 4, 1, 64.70),
+(3, 1, 2, 118.40),
+(4, 7, 1, 415.00),
+(5, 2, 1, 96.80),
+(6, 6, 5, 23.90),
+(7, 2, 2, 96.80),
+(8, 5, 2, 287.30);
